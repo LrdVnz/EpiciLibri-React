@@ -1,8 +1,12 @@
+import BasicFooter from "./BasicFooter";
+import BasicNav from "./BasicNav";
+
 const App = () => {
     return ( 
-        <>
-          <h1>ciao</h1>
-        </>
+        <main>
+           <BasicNav /> 
+           <BasicFooter />
+        </main>
      );
 }
  
