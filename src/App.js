@@ -18,30 +18,30 @@ import scifi from "./books/scifi.json";
 
 const App = () => {
   const categories = {
-    'fantasy': fantasy,
-    'historyBooks': historyBooks,
-    'horror': horror,
-    'romance': romance,
-    'scifi': scifi,
+    fantasy: fantasy,
+    historyBooks: historyBooks,
+    horror: horror,
+    romance: romance,
+    scifi: scifi,
   };
 
   const [books, setBooks] = useState(fantasy);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleDropdown = (category) => {
-    setLoading(true)
+    setLoading(true);
     setBooks(categories[category]);
-    setTimeout( () => {
-      setLoading(false)      
-    }, 1500)
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
   };
 
   return (
     <main>
       <BasicNav handleDropdown={handleDropdown} />
       <Container fluid>
-        <Title></Title>
-        { loading && <p> loading..</p> }
+        <Title />
+        {loading && <p> loading..</p>}
         <Row className="g-2">
           <Main books={books} />
         </Row>

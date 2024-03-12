@@ -1,21 +1,39 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+
+import SingleBook from "./SingleBook";
+import { useState } from "react";
 
 const Main = ({ books }) => {
-  return books.map((book, index) => (
-    <Col md={2} key={index}>
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={book.img} />
-        <Card.Body>
-          <Card.Title>{book.title}</Card.Title>
-          <Card.Text>
-            <span> {book.category} </span>
-            <span> € {book.price} </span>
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    </Col>
-  ));
+  const [searchInput, setSearchInput] = useState("");
+
+  let bookList = books; 
+
+  if (searchInput != "" ) {
+    bookList = books
+      .filter((book) =>
+      book.title.toLowerCase().includes(searchInput.toLowerCase()) 
+      );
+  }
+
+  return (
+    <>
+      <div>
+        <label>Search books: </label>
+        <input
+          type="text"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <p>{searchInput}</p>
+      </div>
+      <Row>{
+      bookList.map((book, index) => (
+      <SingleBook book={book} key={index} />
+    ))}</Row>
+    </>
+  );
 };
 
 export default Main;
