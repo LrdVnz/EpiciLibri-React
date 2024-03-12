@@ -3,7 +3,7 @@ const Title = () => {
     <div>
       <h1 className="title">EPICIlibri </h1>
       <span>
-        <img src="logo.webp" alt="" />
+        <img src="./logo.webp" alt="" />
       </span>
     </div>
   );
