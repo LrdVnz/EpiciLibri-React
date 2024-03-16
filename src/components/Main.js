@@ -1,5 +1,4 @@
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
+
 import Row from "react-bootstrap/Row";
 
 import SingleBook from "./SingleBook";
@@ -10,7 +9,7 @@ const Main = ({ books }) => {
 
   let bookList = books; 
 
-  if (searchInput != "" ) {
+  if (searchInput !== "" ) {
     bookList = books
       .filter((book) =>
       book.title.toLowerCase().includes(searchInput.toLowerCase()) 
