@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
+import AddComment from "./AddComment";
 
 const CommentArea = ({ asin }) => {
   const endpoint = "https://striveschool-api.herokuapp.com/api/books/";
@@ -36,6 +37,7 @@ const CommentArea = ({ asin }) => {
             </Card.Body>
           </Card>
         ))}
+        <AddComment asin={asin}></AddComment>
     </>
   );
 };
