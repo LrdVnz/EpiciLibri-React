@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import AddComment from "./AddComment";
-import { redirect } from "react-router-dom";
+import ModifyComment from "./ModifyComment";
 
 const CommentArea = ({ asin }) => {
   const endpoint = "https://striveschool-api.herokuapp.com/api/books/";
   const authToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzY2VkYzI0ZjYwNTAwMTkzN2Q1MTciLCJpYXQiOjE3MTA2NzE0MDUsImV4cCI6MTcxMTg4MTAwNX0.Ns4BZ0gCOAnJFbUqi2dikVvL93D2ovImKA8sXcDDhWE"
 
   const [comments, setComments] = useState();
-  const [empty, setEmpty] = useState(true)
+  const [empty, setEmpty] = useState(true); 
+  const [ showModify, setShowModify ] = useState(false)
 
   useEffect(() => {
     fetch(endpoint + asin + "/comments/")
@@ -33,7 +34,7 @@ const CommentArea = ({ asin }) => {
         }
       }
     ).then(() => {
-      return redirect("/")
+      alert("comment deleted")
     })
   }
 
@@ -51,6 +52,23 @@ const CommentArea = ({ asin }) => {
               </Card.Text>
               <button onClick={() => handleDelete(comment._id)}>Delete comment</button>
             </Card.Body>
+            <button
+            onClick = { 
+              () => {
+                if(showModify){
+                  setShowModify(false)
+                } else if( !showModify ) {
+                  setShowModify(true)
+                }
+              }
+            }
+            > Modify comment </button>
+           { showModify && <ModifyComment
+            existing_comment = {comment.comment}
+            id = {comment._id}
+            rate = {comment.rate}
+            asin = {asin}
+           ></ModifyComment>}
           </Card>
         ))}
         <AddComment asin={asin}></AddComment>
