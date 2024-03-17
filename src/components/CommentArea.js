@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import AddComment from "./AddComment";
+import { redirect } from "react-router-dom";
 
 const CommentArea = ({ asin }) => {
   const endpoint = "https://striveschool-api.herokuapp.com/api/books/";
+  const authToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzY2VkYzI0ZjYwNTAwMTkzN2Q1MTciLCJpYXQiOjE3MTA2NzE0MDUsImV4cCI6MTcxMTg4MTAwNX0.Ns4BZ0gCOAnJFbUqi2dikVvL93D2ovImKA8sXcDDhWE"
 
   const [comments, setComments] = useState();
   const [empty, setEmpty] = useState(true)
@@ -22,6 +24,19 @@ const CommentArea = ({ asin }) => {
       .catch((e) => console.log(e));
   }, [asin]);
 
+  function handleDelete(e) {
+    fetch("https://striveschool-api.herokuapp.com/api/comments/" + e,{
+    method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization" : authToken,
+        }
+      }
+    ).then(() => {
+      return redirect("/")
+    })
+  }
+
   return (
     <>
       { !comments && <p> loading comments ... </p>}
@@ -34,6 +49,7 @@ const CommentArea = ({ asin }) => {
                 <span> {comment.comment} </span>
                 <span> {comment.author} </span>
               </Card.Text>
+              <button onClick={() => handleDelete(comment._id)}>Delete comment</button>
             </Card.Body>
           </Card>
         ))}
