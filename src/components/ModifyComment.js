@@ -1,14 +1,16 @@
 import { useState } from "react";
 
-const ModifyComment = ({existing_comment, id, rate, asin}) => {
+const ModifyComment = ({existing_comment, id, asin}) => {
     
     const [ comment , setComment ] = useState(existing_comment)
-    const [ vote, setVote ] = useState(rate)
+    const [ vote, setVote ] = useState()
 
     const authToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzY2VkYzI0ZjYwNTAwMTkzN2Q1MTciLCJpYXQiOjE3MTA2NzE0MDUsImV4cCI6MTcxMTg4MTAwNX0.Ns4BZ0gCOAnJFbUqi2dikVvL93D2ovImKA8sXcDDhWE"
 
-    async function handleSubmit () {
+    async function handleSubmit (e) {
         
+        e.preventDefault();
+
         const requestBody = {
             _id : id,
             comment:comment,
@@ -18,7 +20,7 @@ const ModifyComment = ({existing_comment, id, rate, asin}) => {
 
           console.log(requestBody)
 
-     /*   try {
+        try {
         await fetch("https://striveschool-api.herokuapp.com/api/comments/" + id, 
         {
             method: "PUT", 
@@ -30,11 +32,11 @@ const ModifyComment = ({existing_comment, id, rate, asin}) => {
         })
        } catch (error) {
         console.log(error)
-       } */
+       } 
     }
 
     return ( 
-        <form onSubmit={() => handleSubmit() }>
+        <form onSubmit={handleSubmit }>
          <label> Modifica commento : </label>
          <input 
          type="text" 

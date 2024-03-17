@@ -66,7 +66,6 @@ const CommentArea = ({ asin }) => {
            { showModify && <ModifyComment
             existing_comment = {comment.comment}
             id = {comment._id}
-            rate = {comment.rate}
             asin = {asin}
            ></ModifyComment>}
           </Card>
