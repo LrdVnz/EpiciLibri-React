@@ -57,7 +57,7 @@ const CommentArea = ({ asin }) => {
               () => {
                 if(showModify){
                   setShowModify(false)
-                } else if( !showModify ) {
+                } else if( !showModify ) {  
                   setShowModify(true)
                 }
               }

@@ -17,6 +17,8 @@ import romance from "./books/romance.json";
 import scifi from "./books/scifi.json";
 
 const App = () => {
+  const [searchInput, setSearchInput] = useState("");
+
   const categories = {
     fantasy: fantasy,
     historyBooks: historyBooks,
@@ -24,9 +26,16 @@ const App = () => {
     romance: romance,
     scifi: scifi,
   };
-
   const [books, setBooks] = useState(fantasy);
   const [loading, setLoading] = useState(false);
+
+  let bookList = books;
+
+  if (searchInput !== "") {
+    bookList = books.filter((book) =>
+      book.title.toLowerCase().includes(searchInput.toLowerCase())
+    );
+  }
 
   const handleDropdown = (category) => {
     setLoading(true);
@@ -38,12 +47,16 @@ const App = () => {
 
   return (
     <main>
-      <BasicNav handleDropdown={handleDropdown} />
+      <BasicNav
+        handleDropdown={handleDropdown}
+        setSearchInput={setSearchInput}
+        searchInput={searchInput}
+      />
       <Container fluid>
         <Title />
         {loading && <p> loading..</p>}
         <Row className="g-2">
-          <Main books={books} />
+          <Main books={bookList} />
         </Row>
       </Container>
       <BasicFooter />

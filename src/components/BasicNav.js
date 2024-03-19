@@ -2,8 +2,12 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Form from 'react-bootstrap/Form'
+import InputGroup  from "react-bootstrap/InputGroup";
 
-function BasicNav({ handleDropdown }) {
+
+function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -21,6 +25,18 @@ function BasicNav({ handleDropdown }) {
               <NavDropdown.Item href="#action/3.4"onClick={ () => ( handleDropdown('romance') ) }>Romance</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.5"onClick={ () => ( handleDropdown('scifi') ) }>Scifi</NavDropdown.Item>
             </NavDropdown>
+            <Form inline> 
+                <InputGroup>
+                  <InputGroup.Text>
+                  Search Book:
+                  <Form.Control
+                    type = "text"
+                    value = { searchInput }
+                    onChange={(e) => setSearchInput(e.target.value)}
+                  />
+                  </InputGroup.Text>
+                </InputGroup>
+            </Form>
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -29,3 +45,13 @@ function BasicNav({ handleDropdown }) {
 }
 
 export default BasicNav;
+
+
+                  {/* 
+                   <input
+          type="text"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <p>{searchInput}</p>
+         */}
