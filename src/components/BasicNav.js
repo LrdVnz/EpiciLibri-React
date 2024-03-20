@@ -16,17 +16,14 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
 
 
   const modifyInputColors = () => {
-    console.log('wwwwww')
     if(theme === 'dark'){
       setTheme('light');
       setInputBg(`bg-light`);
       setInputTextColor('text-dark')
-      console.log('dddd')  
     } else {
       setTheme('dark');
       setInputTextColor('text-light');
       setInputBg(`bg-dark`);
-
     }
   }
 

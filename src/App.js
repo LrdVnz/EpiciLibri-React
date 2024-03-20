@@ -1,5 +1,5 @@
 /// Import di react
-import { useState, useEffect, useContext  } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ThemeContext } from "./contexts/ThemeContextProvider";
 
 /// Import di bootstrap
@@ -19,7 +19,7 @@ import scifi from "./books/scifi.json";
 const App = () => {
   const [searchInput, setSearchInput] = useState("");
 
-  const {theme, setTheme} = useContext(ThemeContext);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   const categories = {
     fantasy: fantasy,
@@ -50,24 +50,27 @@ const App = () => {
 
   return (
     <main>
-        <BasicNav
-          handleDropdown={handleDropdown}
-          setSearchInput={setSearchInput}
-          searchInput={searchInput}
-        />
-        <Container className={`bg-${theme}`} fluid  >
-          {loading && <p> loading..</p>}
-          <Row className="g-2">
-            <Main books={bookList} />
-          </Row>
-        </Container>
-        <BasicFooter />
+      <BasicNav
+        handleDropdown={handleDropdown}
+        setSearchInput={setSearchInput}
+        searchInput={searchInput}
+      />
+      <Container className={`bg-${theme}`} fluid>
+        {loading && (
+          <p className={theme === "dark" ? "text-light" : "text-dark"}>
+            loading..
+          </p>
+        )}
+        <Row className="g-2">
+          <Main books={bookList} />
+        </Row>
+      </Container>
+      <BasicFooter />
     </main>
   );
 };
 
 export default App;
-
 
 /*
 import { createContext } from "react";
