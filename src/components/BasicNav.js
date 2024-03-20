@@ -4,6 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from 'react-bootstrap/Form'
 import InputGroup  from "react-bootstrap/InputGroup";
+import { Image } from "react-bootstrap";
 
 import { ThemeContext } from "../contexts/ThemeContextProvider";
 import { useContext, useState } from "react";
@@ -29,11 +30,19 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
 
   return (
     <Navbar expand="lg" bg={theme} data-bs-theme={theme} className='pb-3'>
-      <Container>
-        <Navbar.Brand href="#home">EpiciLibri</Navbar.Brand>
+      <Container className="align-items-center">
+        <Navbar.Brand href="#home">
+         <span>EpiciLibri</span>
+         <span className="ms-2">
+          <Image src="https://s3-eu-west-1.amazonaws.com/tpd/logos/62a6277627ee655c1226b624/0x0.png" alt="logo"
+           fluid 
+           style={{maxWidth: '33px'}}
+          />
+         </span>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto align-items-center">
             <Nav.Link href="#">Home</Nav.Link>
             <Nav.Link href="#">About</Nav.Link>
             <Nav.Link href="#">Browse</Nav.Link>
@@ -49,7 +58,7 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
               {theme === 'dark' ? 'light' : 'dark' }
               </NavDropdown.Item>
             </NavDropdown>
-            <Form inline> 
+            <Form> 
                 <InputGroup >
                   <InputGroup.Text className={inputBg + ' ' + inputTextColor + ' border border-0'}>
                   Search Book:
