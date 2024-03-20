@@ -31,7 +31,7 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
   }
 
   return (
-    <Navbar expand="lg" bg={theme} >
+    <Navbar expand="lg" bg={theme} data-bs-theme={theme} className='pb-3'>
       <Container>
         <Navbar.Brand href="#home">EpiciLibri</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -54,12 +54,13 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
             </NavDropdown>
             <Form inline> 
                 <InputGroup >
-                  <InputGroup.Text className={inputBg + ' ' + inputTextColor}>
+                  <InputGroup.Text className={inputBg + ' ' + inputTextColor + ' border border-0'}>
                   Search Book:
                   <Form.Control
                     type = "text"
                     value = { searchInput }
                     onChange={(e) => setSearchInput(e.target.value)}
+                    className = 'ms-2'
                   />
                   </InputGroup.Text>
                 </InputGroup>
