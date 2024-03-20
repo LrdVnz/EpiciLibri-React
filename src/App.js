@@ -1,5 +1,6 @@
 /// Import di react
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext  } from "react";
+import { ThemeContext } from "./contexts/ThemeContextProvider";
 
 /// Import di bootstrap
 import BasicFooter from "./components/BasicFooter";
@@ -7,7 +8,6 @@ import BasicNav from "./components/BasicNav";
 import Main from "./components/Main";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import Title from "./components/Title";
 
 /// Import per i libri in json.
 import fantasy from "./books/fantasy.json";
@@ -19,6 +19,8 @@ import scifi from "./books/scifi.json";
 const App = () => {
   const [searchInput, setSearchInput] = useState("");
 
+  const {theme, setTheme} = useContext(ThemeContext);
+
   const categories = {
     fantasy: fantasy,
     historyBooks: historyBooks,
@@ -26,6 +28,7 @@ const App = () => {
     romance: romance,
     scifi: scifi,
   };
+
   const [books, setBooks] = useState(fantasy);
   const [loading, setLoading] = useState(false);
 
@@ -47,21 +50,45 @@ const App = () => {
 
   return (
     <main>
-      <BasicNav
-        handleDropdown={handleDropdown}
-        setSearchInput={setSearchInput}
-        searchInput={searchInput}
-      />
-      <Container fluid>
-        <Title />
-        {loading && <p> loading..</p>}
-        <Row className="g-2">
-          <Main books={bookList} />
-        </Row>
-      </Container>
-      <BasicFooter />
+        <BasicNav
+          handleDropdown={handleDropdown}
+          setSearchInput={setSearchInput}
+          searchInput={searchInput}
+        />
+        <Container className={`bg-${theme}`} fluid  >
+          {loading && <p> loading..</p>}
+          <Row className="g-2">
+            <Main books={bookList} />
+          </Row>
+        </Container>
+        <BasicFooter />
     </main>
   );
 };
 
 export default App;
+
+
+/*
+import { createContext } from "react";
+import { useState } from "react";
+
+export const ThemeContext = createContext(null);
+
+const ThemeContextProvider = ({ children }) => {
+  const [theme, setTheme] = useState("dar k");
+
+  const value = {
+    theme,
+    setTheme,
+  };
+
+  return (
+    <ThemeContext.Provider value={value}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export default ThemeContextProvider;
+*/

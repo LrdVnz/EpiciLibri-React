@@ -5,11 +5,33 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from 'react-bootstrap/Form'
 import InputGroup  from "react-bootstrap/InputGroup";
 
+import { ThemeContext } from "../contexts/ThemeContextProvider";
+import { useContext, useState } from "react";
 
 function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
 
+  const { theme, setTheme } = useContext(ThemeContext)
+  const [ inputBg, setInputBg ] = useState('')
+  const [ inputTextColor, setInputTextColor ] = useState('')
+
+
+  const modifyInputColors = () => {
+    console.log('wwwwww')
+    if(theme === 'dark'){
+      setTheme('light');
+      setInputBg(`bg-light`);
+      setInputTextColor('text-dark')
+      console.log('dddd')  
+    } else {
+      setTheme('dark');
+      setInputTextColor('text-light');
+      setInputBg(`bg-dark`);
+
+    }
+  }
+
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" bg={theme} >
       <Container>
         <Navbar.Brand href="#home">EpiciLibri</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -25,9 +47,14 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
               <NavDropdown.Item href="#action/3.4"onClick={ () => ( handleDropdown('romance') ) }>Romance</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.5"onClick={ () => ( handleDropdown('scifi') ) }>Scifi</NavDropdown.Item>
             </NavDropdown>
+            <NavDropdown title="Change theme" >
+            <NavDropdown.Item href="#action/3.6"onClick={ () => modifyInputColors() }>
+              {theme === 'dark' ? 'light' : 'dark' }
+              </NavDropdown.Item>
+            </NavDropdown>
             <Form inline> 
-                <InputGroup>
-                  <InputGroup.Text>
+                <InputGroup >
+                  <InputGroup.Text className={inputBg + ' ' + inputTextColor}>
                   Search Book:
                   <Form.Control
                     type = "text"
