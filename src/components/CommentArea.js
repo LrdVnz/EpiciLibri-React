@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import AddComment from "./AddComment";
 import ModifyComment from "./ModifyComment";
+import { Button } from "react-bootstrap";
 
 const CommentArea = ({ asin }) => {
   const endpoint = "https://striveschool-api.herokuapp.com/api/books/";
@@ -50,9 +51,12 @@ const CommentArea = ({ asin }) => {
                 <span> {comment.comment} </span>
                 <span> {comment.author} </span>
               </Card.Text>
-              <button onClick={() => handleDelete(comment._id)}>Delete comment</button>
-            </Card.Body>
-            <button
+              <Button variant="danger"
+              className="m-2"
+              onClick={() => handleDelete(comment._id)}>Delete comment</Button>
+            <Button
+            variant="warning"
+            className="m-2"
             onClick = { 
               () => {
                 if(showModify){
@@ -62,12 +66,13 @@ const CommentArea = ({ asin }) => {
                 }
               }
             }
-            > Modify comment </button>
+            > Modify comment </Button>
            { showModify && <ModifyComment
             existing_comment = {comment.comment}
             id = {comment._id}
             asin = {asin}
-           ></ModifyComment>}
+            ></ModifyComment>}
+            </Card.Body>
           </Card>
         ))}
         <AddComment asin={asin}></AddComment>

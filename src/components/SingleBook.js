@@ -8,10 +8,10 @@ const SingleBook = ({ book }) => {
   const [selected, setSelected] = useState(false);
 
   return (
-    <Col md={2}>
+    <Col sm={12} md={6} lg={4} xl={2} >
       <Card
         style={{ width: "18rem" }}
-        className={selected ? "custom-bg-danger" : ""}
+        className={`${selected ? "custom-bg-danger" : ""}` + " m-auto"}
       >
         <Card.Img
           variant="top"

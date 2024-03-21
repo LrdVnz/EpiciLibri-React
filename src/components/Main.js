@@ -9,7 +9,7 @@ const Main = ({ books }) => {
  
   return (
     <>
-      <Row>{
+      <Row className="gy-3" >{
       books.map((book, index) => (
       <SingleBook book={book} key={index} />
     ))}</Row>

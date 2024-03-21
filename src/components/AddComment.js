@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 
 const AddComment = ({ asin }) => {
   const [comment, setComment] = useState("");
@@ -37,7 +38,9 @@ const AddComment = ({ asin }) => {
   }
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form 
+      className="p-2"
+      onSubmit={handleSubmit}>
         <label>Aggiungi un commento:</label>
         <input
           type="text"
@@ -52,7 +55,10 @@ const AddComment = ({ asin }) => {
           <option value={4}>4</option>
           <option value={5}>5</option>
         </select>
-        <button>Invia</button>
+        <Button 
+        variant="primary"
+        className="m-2"
+        >Submit</Button>
       </form>
     </>
   );
