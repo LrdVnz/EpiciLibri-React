@@ -29,12 +29,13 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
   }
 
   return (
-    <Navbar expand="lg" bg={theme} data-bs-theme={theme} className='pb-3'>
+    <Navbar expand="lg" bg={theme} data-bs-theme={theme} className='pt-2 pb-5'>
       <Container className="align-items-center">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="#home" 
+        className="d-flex align-items-center">
          <span>EpiciLibri</span>
          <span className="ms-2">
-          <Image src="https://s3-eu-west-1.amazonaws.com/tpd/logos/62a6277627ee655c1226b624/0x0.png" alt="logo"
+          <Image src="https://i.ibb.co/HBYcTg4/EPICODE-2-0-LOGO-15.webp" alt="logo"
            fluid 
            style={{maxWidth: '33px'}}
           />
