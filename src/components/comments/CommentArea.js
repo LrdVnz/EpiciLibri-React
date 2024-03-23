@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Card from "react-bootstrap/Card";
 import AddComment from "./AddComment";
 import ModifyComment from "./ModifyComment";
 import { Button } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 
-const CommentArea = ({ asin }) => {
+import { SelectedContext } from "../../contexts/SelectedContextProvider";
+
+const CommentArea = () => {
   const endpoint = "https://striveschool-api.herokuapp.com/api/books/";
   const authToken =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzY2VkYzI0ZjYwNTAwMTkzN2Q1MTciLCJpYXQiOjE3MTA2NzE0MDUsImV4cCI6MTcxMTg4MTAwNX0.Ns4BZ0gCOAnJFbUqi2dikVvL93D2ovImKA8sXcDDhWE";
@@ -13,6 +15,7 @@ const CommentArea = ({ asin }) => {
   const [comments, setComments] = useState([]);
   const [empty, setEmpty] = useState(true);
   const [showModify, setShowModify] = useState(false);
+  const {selected, setSelected} = useContext(SelectedContext)
 
   useEffect(() => {
     fetch("https://striveschool-api.herokuapp.com/api/comments", {
@@ -34,8 +37,8 @@ const CommentArea = ({ asin }) => {
   }, []);
 
   useEffect(() => {
-    if (asin !== "") {
-      fetch(endpoint + asin + "/comments/", {
+    if (selected !== "") {
+      fetch(endpoint + selected + "/comments/", {
         headers: {
           "Content-Type": "application/json",
           Authorization: authToken,
@@ -52,7 +55,7 @@ const CommentArea = ({ asin }) => {
         })
         .catch((e) => console.log(e));
     }
-  }, [asin]);
+  }, [selected]);
 
   function handleDelete(e) {
     fetch("https://striveschool-api.herokuapp.com/api/comments/" + e, {
@@ -105,14 +108,14 @@ const CommentArea = ({ asin }) => {
                 <ModifyComment
                   existing_comment={comment.comment}
                   id={comment._id}
-                  asin={asin}
+                  selected={selected}
                 ></ModifyComment>
               )}
             </Card.Body>
           </Card>
       </Col>
         ))}
-      <AddComment asin={asin}></AddComment>
+      <AddComment selected={selected}></AddComment>
     </>
   );
 };
