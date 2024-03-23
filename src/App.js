@@ -61,9 +61,7 @@ const App = () => {
             loading..
           </p>
         )}
-        <Row className="g-2">
-          <Main books={bookList} />
-        </Row>
+        <Main books={bookList} />
       </Container>
       <BasicFooter />
     </main>
