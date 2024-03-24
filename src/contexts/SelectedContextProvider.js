@@ -8,7 +8,7 @@ const SelectedContextProvider = ({ children }) => {
 
   const value = {
     selected, 
-    setSelected
+    setSelected,
   };
 
   return (

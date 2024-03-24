@@ -35,8 +35,10 @@ const CommentArea = () => {
       })
       .catch((e) => console.log(e));
   }, []);
-
+  
   useEffect(() => {
+    console.log("qualcuno ha cambiato lo stato di selectd UwU !!!")
+    console.log(selected)
     if (selected !== "") {
       fetch(endpoint + selected + "/comments/", {
         headers: {
@@ -76,8 +78,9 @@ const CommentArea = () => {
       {empty && <p> There are no comments. </p>}
       {comments &&
         comments.map((comment, index) => (
-          <Col sm={12} md={6} lg={4}  >
-          <Card key={index}
+          <Col sm={12} md={6} lg={4}
+          key={index}  >
+          <Card 
           style={{ width: "18rem" }}>
             <Card.Body>
               <Card.Text>

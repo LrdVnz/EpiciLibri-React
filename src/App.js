@@ -6,7 +6,6 @@ import { ThemeContext } from "./contexts/ThemeContextProvider";
 import BasicFooter from "./components/BasicFooter";
 import BasicNav from "./components/BasicNav";
 import Main from "./components/Main";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 /// Import per i libri in json.

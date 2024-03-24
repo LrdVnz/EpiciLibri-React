@@ -8,24 +8,22 @@ import SelectedContextProvider from "../contexts/SelectedContextProvider";
 const Main = ({ books }) => {
   return (
     <>
-      <Row className="gy-3">
-        <Col md={6}>
-          <SelectedContextProvider>
+      <SelectedContextProvider>
+        <Row className="gy-3">
+          <Col md={6}>
             <Row className="gy-3">
               {books.map((book, index) => (
                 <SingleBook book={book} key={index} />
               ))}
             </Row>
-          </SelectedContextProvider>
-        </Col>
-        <Col md={6}>
-          <SelectedContextProvider>
+          </Col>
+          <Col md={6}>
             <Row className="gy-3">
               <CommentArea asin={""}></CommentArea>
             </Row>
-          </SelectedContextProvider>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </SelectedContextProvider>
     </>
   );
 };
