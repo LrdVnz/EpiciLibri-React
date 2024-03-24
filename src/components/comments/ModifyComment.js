@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 
-const ModifyComment = ({ existing_comment, id, asin }) => {
+const ModifyComment = ({ existing_comment, id, asin, reloadFather, handleShowModify }) => {
   const [comment, setComment] = useState(existing_comment);
   const [vote, setVote] = useState();
 
@@ -29,6 +29,8 @@ const ModifyComment = ({ existing_comment, id, asin }) => {
         },
         body: JSON.stringify(requestBody),
       });
+      reloadFather()
+      handleShowModify()
     } catch (error) {
       console.log(error);
     }

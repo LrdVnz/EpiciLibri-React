@@ -20,7 +20,15 @@ const CommentArea = () => {
   const {selected, setSelected} = useContext(SelectedContext)
 
   function reloadComments() {
-    setUploaded(true)
+    uploaded ? setUploaded(false) : setUploaded(true)
+  }
+
+  function handleShowModify() {
+    if (showModify) {
+      setShowModify(false);
+    } else if (!showModify) {
+      setShowModify(true);
+    }
   }
 
   useEffect(() => {
@@ -74,6 +82,7 @@ const CommentArea = () => {
       },
     }).then(() => {
       alert("comment deleted");
+      reloadComments()
     });
   }
 
@@ -103,13 +112,7 @@ const CommentArea = () => {
               <Button
                 variant="warning"
                 className="m-2"
-                onClick={() => {
-                  if (showModify) {
-                    setShowModify(false);
-                  } else if (!showModify) {
-                    setShowModify(true);
-                  }
-                }}
+                onClick={() => handleShowModify()}
               >
                 Modify comment
               </Button>
@@ -118,6 +121,8 @@ const CommentArea = () => {
                   existing_comment={comment.comment}
                   id={comment._id}
                   selected={selected}
+                  reloadFather= {reloadComments}
+                  handleShowModify={handleShowModify}
                 ></ModifyComment>
               )}
             </Card.Body>
