@@ -9,30 +9,25 @@ const SingleBook = ({ book }) => {
   const { selected, setSelected } = useContext(SelectedContext);
   const [clicked, setClicked] = useState(false);
 
- /*  useEffect(() => {
-    if (clicked) {
-      setSelected(book.asin);
-    }
-  }, [clicked]);
- */
-  const margin = "m-auto";
+  const margin = " m-auto";
 
   return (
     <Col sm={12} md={6} lg={4}
       onClick={() => {
         if (clicked) {
-          setSelected(book.asin)
           setClicked(false);
+        } else {
+          setSelected(book.asin)
+          setClicked(true);
+          
           console.log("sono stato cliccato senpai >°///°<")
           console.log(selected)
-        } else {
-          setClicked(true);
         }
       }}
     >
       <Card
         style={{ width: "18rem" }}
-        className={`${clicked ? "custom-bg-danger" : ""}` + margin}
+        className={`${clicked ? "custom-bg-danger" : ""}`  + margin }
       >
         <Card.Img variant="top" src={book.img} />
         <Card.Body>

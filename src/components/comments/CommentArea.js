@@ -15,7 +15,12 @@ const CommentArea = () => {
   const [comments, setComments] = useState([]);
   const [empty, setEmpty] = useState(true);
   const [showModify, setShowModify] = useState(false);
+  const [uploaded, setUploaded] = useState(false)
   const {selected, setSelected} = useContext(SelectedContext)
+
+  function reloadComments() {
+    setUploaded(true)
+  }
 
   useEffect(() => {
     fetch("https://striveschool-api.herokuapp.com/api/comments", {
@@ -118,7 +123,7 @@ const CommentArea = () => {
           </Card>
       </Col>
         ))}
-      <AddComment selected={selected}></AddComment>
+      <AddComment reloadFather={reloadComments}></AddComment>
     </>
   );
 };
