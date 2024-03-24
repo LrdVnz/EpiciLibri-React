@@ -52,7 +52,9 @@ const ModifyComment = ({ existing_comment, id, asin }) => {
         <option value={4}>4</option>
         <option value={5}>5</option>
       </select>
-      <Button variant="primary"
+      <Button 
+      type="submit"
+      variant="primary"
       className="m-2"
       >Submit</Button>
     </form>

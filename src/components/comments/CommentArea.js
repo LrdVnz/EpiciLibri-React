@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 
 import { SelectedContext } from "../../contexts/SelectedContextProvider";
+import { upload } from "@testing-library/user-event/dist/upload";
 
 const CommentArea = () => {
   const endpoint = "https://striveschool-api.herokuapp.com/api/books/";
@@ -62,7 +63,7 @@ const CommentArea = () => {
         })
         .catch((e) => console.log(e));
     }
-  }, [selected]);
+  }, [selected, uploaded]);
 
   function handleDelete(e) {
     fetch("https://striveschool-api.herokuapp.com/api/comments/" + e, {
