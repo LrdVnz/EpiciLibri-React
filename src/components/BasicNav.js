@@ -1,10 +1,4 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Form from 'react-bootstrap/Form'
-import InputGroup  from "react-bootstrap/InputGroup";
-import { Image } from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown, Form, InputGroup, Image } from "react-bootstrap";
 
 import { ThemeContext } from "../contexts/ThemeContextProvider";
 import { useContext, useState } from "react";
@@ -82,11 +76,4 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
 export default BasicNav;
 
 
-                  {/* 
-                   <input
-          type="text"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-        <p>{searchInput}</p>
-         */}
+          

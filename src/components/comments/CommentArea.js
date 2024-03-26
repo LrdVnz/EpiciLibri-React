@@ -6,7 +6,6 @@ import { Button } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 
 import { SelectedContext } from "../../contexts/SelectedContextProvider";
-import { upload } from "@testing-library/user-event/dist/upload";
 
 const CommentArea = () => {
   const endpoint = "https://striveschool-api.herokuapp.com/api/books/";
@@ -16,11 +15,12 @@ const CommentArea = () => {
   const [comments, setComments] = useState([]);
   const [empty, setEmpty] = useState(true);
   const [showModify, setShowModify] = useState(false);
-  const [uploaded, setUploaded] = useState(false)
-  const {selected, setSelected} = useContext(SelectedContext)
+  const [ uploaded, setUploaded ] = useState(false)
+  const { selected } = useContext(SelectedContext);
 
   function reloadComments() {
-    uploaded ? setUploaded(false) : setUploaded(true)
+    console.log("ci siamoooo")
+    uploaded ? setUploaded(false) : setUploaded(true);
   }
 
   function handleShowModify() {
@@ -42,17 +42,17 @@ const CommentArea = () => {
       .then((json) => {
         if (json.length !== 0) {
           setEmpty(false);
-          setComments(json.slice(0,200));
+          setComments(json.slice(0, 200));
         } else {
           setComments([]);
         }
       })
       .catch((e) => console.log(e));
   }, []);
-  
+
   useEffect(() => {
-    console.log("qualcuno ha cambiato lo stato di selectd UwU !!!")
-    console.log(selected)
+    console.log("qualcuno ha cambiato lo stato di selectd UwU !!!");
+    console.log(selected);
     if (selected !== "") {
       fetch(endpoint + selected + "/comments/", {
         headers: {
@@ -82,52 +82,50 @@ const CommentArea = () => {
       },
     }).then(() => {
       alert("comment deleted");
-      reloadComments()
+      reloadComments();
+      setUploaded(!uploaded);
     });
   }
 
   return (
     <>
-      
       {!comments && <p> loading comments ... </p>}
       {empty && <p> There are no comments. </p>}
       {comments &&
         comments.map((comment, index) => (
-          <Col sm={12} md={6} lg={4}
-          key={index}  >
-          <Card 
-          style={{ width: "18rem" }}>
-            <Card.Body>
-              <Card.Text>
-                <span> {comment.comment} </span>
-                <span> {comment.author} </span>
-              </Card.Text>
-              <Button
-                variant="danger"
-                className="m-2"
-                onClick={() => handleDelete(comment._id)}
-              >
-                Delete comment
-              </Button>
-              <Button
-                variant="warning"
-                className="m-2"
-                onClick={() => handleShowModify()}
-              >
-                Modify comment
-              </Button>
-              {showModify && (
-                <ModifyComment
-                  existing_comment={comment.comment}
-                  id={comment._id}
-                  selected={selected}
-                  reloadFather= {reloadComments}
-                  handleShowModify={handleShowModify}
-                ></ModifyComment>
-              )}
-            </Card.Body>
-          </Card>
-      </Col>
+          <Col sm={12} md={6} lg={4} key={index}>
+            <Card style={{ width: "18rem" }}>
+              <Card.Body>
+                <Card.Text>
+                  <span> {comment.comment} </span>
+                  <span> {comment.author} </span>
+                </Card.Text>
+                <Button
+                  variant="danger"
+                  className="m-2"
+                  onClick={() => handleDelete(comment._id)}
+                >
+                  Delete comment
+                </Button>
+                <Button
+                  variant="warning"
+                  className="m-2"
+                  onClick={() => handleShowModify()}
+                >
+                  Modify comment
+                </Button>
+                {showModify && (
+                  <ModifyComment
+                    existing_comment={comment.comment}
+                    id={comment._id}
+                    selected={selected}
+                    handleShowModify={handleShowModify}
+                    reloadFather={reloadComments}
+                  ></ModifyComment>
+                )}
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
       <AddComment reloadFather={reloadComments}></AddComment>
     </>

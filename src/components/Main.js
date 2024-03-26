@@ -6,10 +6,6 @@ import CommentArea from "./comments/CommentArea";
 import SelectedContextProvider from "../contexts/SelectedContextProvider";
 
 const Main = ({ books }) => {
-  let commentAreaStyle = {
-    position: "sticky",
-    top: 0
-  };
 
   return (
     <>
@@ -24,10 +20,7 @@ const Main = ({ books }) => {
           </Col>
           <Col md={6}>
             <Row className="gy-3">
-              <CommentArea asin={""} 
-              style={commentAreaStyle}>
-
-              </CommentArea>
+              <CommentArea asin={""} />
             </Row>
           </Col>
         </Row>

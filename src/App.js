@@ -9,6 +9,7 @@ const categories = {
   romance: romance,
   scifi: scifi,
 };
+
 const App = () => {
   const [searchInput, setSearchInput] = useState("");
 

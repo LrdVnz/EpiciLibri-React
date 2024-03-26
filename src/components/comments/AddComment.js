@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { Button } from "react-bootstrap";
 import { SelectedContext } from "../../contexts/SelectedContextProvider";
+import CommentForm from "./CommentForm";
 
 const AddComment = ({reloadFather}) => {
   const [comment, setComment] = useState("");
@@ -42,32 +42,15 @@ const AddComment = ({reloadFather}) => {
 
   return (
     <>
-      <form 
-      className="p-2"
-      onSubmit={handleSubmit}>
-        <label>Aggiungi un commento:</label>
-        <input
-          type="text"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-        />
-        <label> Dai un voto:</label>
-        <select value={vote} onChange={(e) => setVote(e.target.value)}>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-        </select>
-        <Button 
-        type="submit"
-        variant="primary"
-        className="m-2"
-        /* onClick={(e) => {
-          console.log(e.target)
-        }} */
-        >Submit</Button>
-      </form>
+       <CommentForm
+      title={"Aggiungi commento"}
+      handleSubmit={handleSubmit}
+      comment={comment}
+      setComment={setComment}
+      setVote={setVote}
+      vote={vote}
+      reloadFather={reloadFather}
+    />
     </>
   );
 };

@@ -1,6 +1,5 @@
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import { useContext, useEffect, useState } from "react";
+import {Card, Col} from "react-bootstrap";
+import { useContext, useState } from "react";
 import "./SingleBook.css";
 
 import { SelectedContext } from "../../contexts/SelectedContextProvider";
@@ -19,9 +18,6 @@ const SingleBook = ({ book }) => {
         } else {
           setSelected(book.asin)
           setClicked(true);
-          
-          console.log("sono stato cliccato senpai >°///°<")
-          console.log(selected)
         }
       }}
     >

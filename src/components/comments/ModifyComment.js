@@ -1,15 +1,24 @@
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+import CommentForm from "./CommentForm";
 
-const ModifyComment = ({ existing_comment, id, asin, reloadFather, handleShowModify }) => {
+const ModifyComment = ({
+  existing_comment,
+  id,
+  asin,
+  reloadFather,
+  handleShowModify,
+}) => {
   const [comment, setComment] = useState(existing_comment);
-  const [vote, setVote] = useState();
+  const [vote, setVote] = useState(0);
 
   const authToken =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzY2VkYzI0ZjYwNTAwMTkzN2Q1MTciLCJpYXQiOjE3MTA2NzE0MDUsImV4cCI6MTcxMTg4MTAwNX0.Ns4BZ0gCOAnJFbUqi2dikVvL93D2ovImKA8sXcDDhWE";
+  const commentsApi = "https://striveschool-api.herokuapp.com/api/comments/";
 
   async function handleSubmit(e) {
     e.preventDefault();
+    
+    console.log("ciao")
 
     const requestBody = {
       _id: id,
@@ -21,7 +30,7 @@ const ModifyComment = ({ existing_comment, id, asin, reloadFather, handleShowMod
     console.log(requestBody);
 
     try {
-      await fetch("https://striveschool-api.herokuapp.com/api/comments/" + id, {
+      await fetch(commentsApi + id, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -30,36 +39,22 @@ const ModifyComment = ({ existing_comment, id, asin, reloadFather, handleShowMod
         body: JSON.stringify(requestBody),
       });
       reloadFather()
-      handleShowModify()
+      handleShowModify();
     } catch (error) {
       console.log(error);
     }
   }
 
   return (
-    <form 
-    className="p-2"
-    onSubmit={handleSubmit}>
-      <label> Modifica commento : </label>
-      <input
-        type="text"
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-      />
-      <label> Dai un voto:</label>
-      <select value={vote} onChange={(e) => setVote(e.target.value)}>
-        <option value={1}>1</option>
-        <option value={2}>2</option>
-        <option value={3}>3</option>
-        <option value={4}>4</option>
-        <option value={5}>5</option>
-      </select>
-      <Button 
-      type="submit"
-      variant="primary"
-      className="m-2"
-      >Submit</Button>
-    </form>
+    <CommentForm
+      title={"Modifica Commento"}
+      handleSubmit={handleSubmit}
+      comment={comment}
+      setComment={setComment}
+      setVote={setVote}
+      vote={vote}
+      reloadFather={reloadFather}
+    />
   );
 };
 
