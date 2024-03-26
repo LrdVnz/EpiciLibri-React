@@ -5,7 +5,7 @@ import "./SingleBook.css";
 import { SelectedContext } from "../../contexts/SelectedContextProvider";
 
 const SingleBook = ({ book }) => {
-  const { selected, setSelected } = useContext(SelectedContext);
+  const { setSelected } = useContext(SelectedContext);
   const [clicked, setClicked] = useState(false);
 
   const margin = " m-auto";

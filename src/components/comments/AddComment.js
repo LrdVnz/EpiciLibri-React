@@ -6,7 +6,7 @@ const AddComment = ({reloadFather}) => {
   const [comment, setComment] = useState("");
   const [vote, setVote] = useState(1);
   const [isPending, setIsPending] = useState(false);
-  const { selected, setSelected } = useContext(SelectedContext);
+  const { selected } = useContext(SelectedContext);
 
   const endpoint = "https://striveschool-api.herokuapp.com/api/comments";
   const authToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzY2VkYzI0ZjYwNTAwMTkzN2Q1MTciLCJpYXQiOjE3MTA2NzE0MDUsImV4cCI6MTcxMTg4MTAwNX0.Ns4BZ0gCOAnJFbUqi2dikVvL93D2ovImKA8sXcDDhWE"

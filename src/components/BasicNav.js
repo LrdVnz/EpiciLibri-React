@@ -43,11 +43,11 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
             <Nav.Link href="#">About</Nav.Link>
             <Nav.Link href="#">Browse</Nav.Link>
             <NavDropdown title="Choose your category" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1"onClick={ () => ( handleDropdown('fantasy') ) }>Fantasy</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2"onClick={ () => ( handleDropdown('historyBooks') ) }>History</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3"onClick={ () => ( handleDropdown('horror') ) }>Horror</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4"onClick={ () => ( handleDropdown('romance') ) }>Romance</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.5"onClick={ () => ( handleDropdown('scifi') ) }>Scifi</NavDropdown.Item>
+              <NavDropdown.Item onClick={ () => ( handleDropdown('fantasy') ) }>Fantasy</NavDropdown.Item>
+              <NavDropdown.Item onClick={ () => ( handleDropdown('historyBooks') ) }>History</NavDropdown.Item>
+              <NavDropdown.Item onClick={ () => ( handleDropdown('horror') ) }>Horror</NavDropdown.Item>
+              <NavDropdown.Item onClick={ () => ( handleDropdown('romance') ) }>Romance</NavDropdown.Item>
+              <NavDropdown.Item onClick={ () => ( handleDropdown('scifi') ) }>Scifi</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Change theme" >
             <NavDropdown.Item href="#action/3.6"onClick={ () => modifyInputColors() }>
