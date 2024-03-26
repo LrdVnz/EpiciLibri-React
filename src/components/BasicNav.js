@@ -3,22 +3,23 @@ import { Container, Nav, Navbar, NavDropdown, Form, InputGroup, Image } from "re
 import { ThemeContext } from "../contexts/ThemeContextProvider";
 import { useContext, useState } from "react";
 
+const formThemes = {
+  light : ' bg-light text-dark ',
+  dark : ' bg-dark text-light ' 
+}
+
 function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
 
   const { theme, setTheme } = useContext(ThemeContext)
-  const [ inputBg, setInputBg ] = useState('')
-  const [ inputTextColor, setInputTextColor ] = useState('')
-
-
+  const [ formTheme, setFormTheme ] = useState(formThemes.dark)
+  
   const modifyInputColors = () => {
     if(theme === 'dark'){
       setTheme('light');
-      setInputBg(`bg-light`);
-      setInputTextColor('text-dark')
+      setFormTheme(formThemes.light)
     } else {
       setTheme('dark');
-      setInputTextColor('text-light');
-      setInputBg(`bg-dark`);
+      setFormTheme(formThemes.dark)
     }
   }
 
@@ -55,7 +56,7 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
             </NavDropdown>
             <Form> 
                 <InputGroup >
-                  <InputGroup.Text className={inputBg + ' ' + inputTextColor + ' border border-0'}>
+                  <InputGroup.Text className={formTheme + ' border border-0'}>
                   Search Book:
                   <Form.Control
                     type = "text"

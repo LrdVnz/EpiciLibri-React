@@ -18,7 +18,6 @@ const CommentArea = () => {
   const { selected } = useContext(SelectedContext);
 
   function reloadComments() {
-    console.log("ci siamoooo")
     uploaded ? setUploaded(false) : setUploaded(true);
   }
 
