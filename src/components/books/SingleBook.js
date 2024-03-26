@@ -12,6 +12,7 @@ const SingleBook = ({ book }) => {
 
   return (
     <Col sm={12} md={6} lg={4}
+    className="custom-hover"
       onClick={() => {
         if (clicked) {
           setClicked(false);

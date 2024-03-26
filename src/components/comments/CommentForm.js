@@ -1,15 +1,23 @@
 import { Button } from "react-bootstrap";
+import { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "../../contexts/ThemeContextProvider";
 
 const CommentForm = ({handleSubmit, comment, setComment, setVote, vote, title, reloadFather}) => {
+ 
+    const { theme } = useContext(ThemeContext)
+    const [ classTheme, setClassTheme ] = useState('dark-theme')
 
-  
+    useEffect(() => {
+       theme === 'dark' ? setClassTheme('dark-theme') : setClassTheme('white-theme');
+    }, [theme])
+
     return ( 
         <form 
-        className="p-2"
+        className={ "p-2 " + classTheme }
         onSubmit={(e) => {
             handleSubmit(e); 
             }}>
-          <label> {title} </label>
+          <label > {title} </label>
           <input
             type="text"
             value={comment}

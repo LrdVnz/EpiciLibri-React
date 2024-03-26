@@ -18,8 +18,6 @@ const ModifyComment = ({
   async function handleSubmit(e) {
     e.preventDefault();
     
-    console.log("ciao")
-
     const requestBody = {
       _id: id,
       comment: comment,

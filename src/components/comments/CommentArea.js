@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext } from "react";
-import Card from "react-bootstrap/Card";
+import { Card, Button, Col} from "react-bootstrap";
 import AddComment from "./AddComment";
 import ModifyComment from "./ModifyComment";
-import { Button } from "react-bootstrap";
-import Col from "react-bootstrap/Col";
+import "./CommentForm.css";
 
 import { SelectedContext } from "../../contexts/SelectedContextProvider";
 
