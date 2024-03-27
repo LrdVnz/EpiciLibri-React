@@ -1,9 +1,8 @@
 import { useState, useContext } from "react";
 
-import {Col, Row} from "react-bootstrap";
+import {Col, Row, Container} from "react-bootstrap";
 import BasicFooter from "./BasicFooter";
 import BasicNav from "./BasicNav";
-import Container from "react-bootstrap/Container";
 import SingleBook from "./books/SingleBook";
 import CommentArea from "./comments/CommentArea";
 
@@ -28,10 +27,11 @@ const categories = {
 const Main = () => {
   const [searchInput, setSearchInput] = useState("");
   const [books, setBooks] = useState(fantasy);
-
   const [loading, setLoading] = useState(false);
 
   const { theme } = useContext(ThemeContext);
+
+  const showSearch = true; 
   
   const loadingMsg = (
     <p className={theme === "dark" ? "text-light" : "text-dark"}>loading..</p>
@@ -60,6 +60,7 @@ const Main = () => {
         handleDropdown={handleDropdown}
         setSearchInput={setSearchInput}
         searchInput={searchInput}
+        showSearch={showSearch}
       />
       <Container className={`bg-${theme}`} fluid>
         {loading && loadingMsg}

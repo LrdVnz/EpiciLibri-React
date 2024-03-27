@@ -3,16 +3,20 @@ import { Container, Nav, Navbar, NavDropdown, Form, InputGroup, Image } from "re
 import { ThemeContext } from "../contexts/ThemeContextProvider";
 import { useContext, useState } from "react";
 
+import { Link } from "react-router-dom";
+
 const formThemes = {
   light : ' bg-light text-dark ',
   dark : ' bg-dark text-light ' 
 }
 
-function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
+function BasicNav({ handleDropdown, setSearchInput, searchInput, showSearch }) {
 
   const { theme, setTheme } = useContext(ThemeContext)
   const [ formTheme, setFormTheme ] = useState(formThemes.dark)
   
+  let formClass = showSearch ? 'd-block' : 'd-none'
+
   const modifyInputColors = () => {
     if(theme === 'dark'){
       setTheme('light');
@@ -39,9 +43,8 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto align-items-center">
-            <Nav.Link href="#">Home</Nav.Link>
-            <Nav.Link href="#">About</Nav.Link>
-            <Nav.Link href="#">Browse</Nav.Link>
+            <Nav.Link href="#"><Link to="/">Home</Link></Nav.Link>
+            <Nav.Link href="https://github.com/LrdVnz">My Github</Nav.Link>
             <NavDropdown title="Choose your category" id="basic-nav-dropdown">
               <NavDropdown.Item onClick={ () => ( handleDropdown('fantasy') ) }>Fantasy</NavDropdown.Item>
               <NavDropdown.Item onClick={ () => ( handleDropdown('historyBooks') ) }>History</NavDropdown.Item>
@@ -54,7 +57,7 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput }) {
               {theme === 'dark' ? 'light' : 'dark' }
               </NavDropdown.Item>
             </NavDropdown>
-            <Form> 
+            <Form className={formClass}> 
                 <InputGroup >
                   <InputGroup.Text className={formTheme + ' border border-0'}>
                   Search Book:
