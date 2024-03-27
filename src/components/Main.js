@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 
-import {Col, Row, Container} from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 import BasicFooter from "./BasicFooter";
 import BasicNav from "./BasicNav";
 import SingleBook from "./books/SingleBook";
@@ -15,6 +15,7 @@ import scifi from "../booksData/scifi.json";
 
 import SelectedContextProvider from "../contexts/SelectedContextProvider";
 import { ThemeContext } from "../contexts/ThemeContextProvider";
+import { QueryContext } from "../contexts/QueryContext";
 
 const categories = {
   fantasy: fantasy,
@@ -26,36 +27,33 @@ const categories = {
 
 const Main = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [books, setBooks] = useState(fantasy);
   const [loading, setLoading] = useState(false);
 
   const { theme } = useContext(ThemeContext);
+  const { query, setQuery } = useContext(QueryContext);
 
-  const showSearch = true; 
-  
+  const showSearch = true;
+
   const loadingMsg = (
     <p className={theme === "dark" ? "text-light" : "text-dark"}>loading..</p>
   );
 
   const handleDropdown = (category) => {
     setLoading(true);
-    setBooks(categories[category]);
+    setQuery(categories[category]);
     setTimeout(() => {
       setLoading(false);
     }, 1500);
   };
 
-
-  let bookList = books;
+  let bookList = query;
 
   if (searchInput !== "") {
-    console.log(searchInput)
-    bookList = books.filter((book) => {
-      if (book.title.toLowerCase().includes(searchInput.toLowerCase())){
-        console.log(book.title)
-        return book
+    bookList = query.filter((book) => {
+      if (book.title.toLowerCase().includes(searchInput.toLowerCase())) {
+        return book;
       }
-    } );
+    });
   }
 
   return (

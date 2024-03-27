@@ -49,8 +49,6 @@ const CommentArea = () => {
   }, []);
 
   useEffect(() => {
-    console.log("qualcuno ha cambiato lo stato di selectd UwU !!!");
-    console.log(selected);
     if (selected !== "") {
       fetch(endpoint + selected + "/comments/", {
         headers: {
