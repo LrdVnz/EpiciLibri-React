@@ -1,30 +1,30 @@
-import {Card, Col} from "react-bootstrap";
+import { Card, Col, Button } from "react-bootstrap";
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import "./SingleBook.css";
 
 import { SelectedContext } from "../../contexts/SelectedContextProvider";
 
 const SingleBook = ({ book }) => {
-  const { setSelected } = useContext(SelectedContext);
+  const { selected, setSelected } = useContext(SelectedContext);
   const [clicked, setClicked] = useState(false);
 
   const margin = " m-auto";
 
   return (
-    <Col sm={12} md={6} lg={4}
-    className="custom-hover"
+    <Col sm={12} md={6} lg={4} className="custom-hover"
       onClick={() => {
         if (clicked) {
           setClicked(false);
         } else {
-          setSelected(book.asin)
+          setSelected(book.asin);
           setClicked(true);
         }
       }}
     >
       <Card
         style={{ width: "18rem" }}
-        className={`${clicked ? "custom-bg-danger" : ""}`  + margin }
+        className={`${clicked ? "custom-bg-danger" : ""}` + margin}
       >
         <Card.Img variant="top" src={book.img} />
         <Card.Body>
@@ -34,6 +34,7 @@ const SingleBook = ({ book }) => {
             <span> € {book.price} </span>
             Asin: {book.asin}
           </Card.Text>
+          <Button> <Link to={"/" + book.asin}> Dettagli</Link> </Button>
         </Card.Body>
       </Card>
     </Col>

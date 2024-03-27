@@ -45,7 +45,7 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput, showSearch }) {
           <Nav className="me-auto align-items-center">
             <Nav.Link href="#"><Link to="/">Home</Link></Nav.Link>
             <Nav.Link href="https://github.com/LrdVnz">My Github</Nav.Link>
-            <NavDropdown title="Choose your category" id="basic-nav-dropdown">
+            <NavDropdown title="Choose your category"  className={formClass} id="basic-nav-dropdown">
               <NavDropdown.Item onClick={ () => ( handleDropdown('fantasy') ) }>Fantasy</NavDropdown.Item>
               <NavDropdown.Item onClick={ () => ( handleDropdown('historyBooks') ) }>History</NavDropdown.Item>
               <NavDropdown.Item onClick={ () => ( handleDropdown('horror') ) }>Horror</NavDropdown.Item>
