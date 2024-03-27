@@ -43,7 +43,7 @@ function BasicNav({ handleDropdown, setSearchInput, searchInput, showSearch }) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto align-items-center">
-            <Nav.Link href="#"><Link to="/">Home</Link></Nav.Link>
+            <Link to="/">Home</Link>
             <Nav.Link href="https://github.com/LrdVnz">My Github</Nav.Link>
             <NavDropdown title="Choose your category"  className={formClass} id="basic-nav-dropdown">
               <NavDropdown.Item onClick={ () => ( handleDropdown('fantasy') ) }>Fantasy</NavDropdown.Item>

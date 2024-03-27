@@ -34,7 +34,7 @@ const SingleBook = ({ book }) => {
             <span> € {book.price} </span>
             Asin: {book.asin}
           </Card.Text>
-          <Button> <Link to={"/" + book.asin}> Dettagli</Link> </Button>
+         <Button> <Link to={"/" + book.asin}> Dettagli</Link> </Button> 
         </Card.Body>
       </Card>
     </Col>

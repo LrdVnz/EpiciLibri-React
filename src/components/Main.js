@@ -49,9 +49,13 @@ const Main = () => {
   let bookList = books;
 
   if (searchInput !== "") {
-    bookList = books.filter((book) =>
-      book.title.toLowerCase().includes(searchInput.toLowerCase())
-    );
+    console.log(searchInput)
+    bookList = books.filter((book) => {
+      if (book.title.toLowerCase().includes(searchInput.toLowerCase())){
+        console.log(book.title)
+        return book
+      }
+    } );
   }
 
   return (
@@ -68,7 +72,7 @@ const Main = () => {
           <Row className="gy-3">
             <Col md={6}>
               <Row className="gy-3">
-                {books.map((book, index) => (
+                {bookList.map((book, index) => (
                   <SingleBook book={book} key={index} />
                 ))}
               </Row>
