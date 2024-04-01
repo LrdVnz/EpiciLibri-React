@@ -36,8 +36,14 @@ const SingleBook = ({ book }) => {
             <span> € {book.price} </span>
             Asin: {book.asin}
           </Card.Text>
-          <Button>
-            <Link to={"/" + book.asin} className="text-dark">Dettagli</Link>{" "}
+          <Button className="btn-success">
+            <Link
+              to={"/" + book.asin}
+              className="text-dark"
+              style={{ textDecoration: "none" }}
+            >
+              Details
+            </Link>{" "}
           </Button>
         </Card.Body>
       </Card>

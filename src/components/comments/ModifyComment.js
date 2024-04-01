@@ -52,6 +52,7 @@ const ModifyComment = ({
       setVote={setVote}
       vote={vote}
       reloadFather={reloadFather}
+      isModify={true}
     />
   );
 };

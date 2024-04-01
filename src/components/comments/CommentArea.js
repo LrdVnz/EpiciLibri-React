@@ -105,11 +105,17 @@ const CommentArea = ({ isDetails }) => {
             >
               <Card.Body>
                 <Card.Text>
-                  <p> {comment.comment} </p>
-                  <div>
-                    <span>Author : </span>
-                    <span><b>{comment.author}</b></span>
-                  </div>
+                  {comment.comment}
+                  <br />
+                  <span>Author : </span>
+                  <span>
+                    <b>{comment.author}</b>
+                  </span>
+                  <br />
+                  <span>Vote : </span>
+                  <span>
+                    <b>{comment.rate}</b>
+                  </span>
                 </Card.Text>
                 <Button
                   variant="danger"
