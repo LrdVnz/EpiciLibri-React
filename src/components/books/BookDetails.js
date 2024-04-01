@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ThemeContext } from "../../contexts/ThemeContextProvider";
 import { QueryContext } from "../../contexts/QueryContext";
 import { Row, Card, Col, Container } from "react-bootstrap";
 import BasicNav from "../BasicNav";
 import BasicFooter from "../BasicFooter";
+import CommentArea from "../comments/CommentArea";
 
 const BookDetails = () => {
   const { query } = useContext(QueryContext);
@@ -41,6 +42,7 @@ const BookDetails = () => {
                 <h3> € {book.price} </h3>
                 Asin: {book.asin}
               </Col>
+            {   <CommentArea isDetails={true}></CommentArea> }
             </Row>
           </Col>
         </Row>

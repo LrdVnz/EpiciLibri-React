@@ -6,7 +6,7 @@ import "./CommentForm.css";
 
 import { SelectedContext } from "../../contexts/SelectedContextProvider";
 
-const CommentArea = () => {
+const CommentArea = ({isDetails}) => {
   const endpoint = "https://striveschool-api.herokuapp.com/api/books/";
   const authToken =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzY2VkYzI0ZjYwNTAwMTkzN2Q1MTciLCJpYXQiOjE3MTE5NjU4MDQsImV4cCI6MTcxMzE3NTQwNH0.JoZHy-RFfdIXrG05LxXCXOAUzNflrEJSxnpZD7pAdj8"
@@ -89,7 +89,7 @@ const CommentArea = () => {
       {empty && <p> There are no comments. </p>}
       {comments &&
         comments.map((comment, index) => (
-          <Col sm={12} md={6} lg={4} key={index}>
+          <Col sm={12} md={isDetails ? null : 6} lg={isDetails ? null : 4} key={index}>
             <Card style={{ width: "18rem" }}>
               <Card.Body>
                 <Card.Text>
