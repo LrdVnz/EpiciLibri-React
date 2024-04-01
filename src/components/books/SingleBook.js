@@ -9,10 +9,12 @@ const SingleBook = ({ book }) => {
   const { selected, setSelected } = useContext(SelectedContext);
   const [clicked, setClicked] = useState(false);
 
-  const margin = " m-auto";
-
   return (
-    <Col sm={12} md={6} lg={4} className="custom-hover"
+    <Col
+      sm={12}
+      md={6}
+      lg={4}
+      className="custom-hover"
       onClick={() => {
         if (clicked) {
           setClicked(false);
@@ -24,7 +26,7 @@ const SingleBook = ({ book }) => {
     >
       <Card
         style={{ width: "18rem" }}
-        className={`${clicked ? "custom-bg-danger" : ""}` + margin}
+        className={selected === book.asin && "custom-bg-danger "}
       >
         <Card.Img variant="top" src={book.img} />
         <Card.Body>
@@ -34,7 +36,10 @@ const SingleBook = ({ book }) => {
             <span> € {book.price} </span>
             Asin: {book.asin}
           </Card.Text>
-         <Button> <Link to={"/" + book.asin}> Dettagli</Link> </Button> 
+          <Button>
+            {" "}
+            <Link to={"/" + book.asin}> Dettagli</Link>{" "}
+          </Button>
         </Card.Body>
       </Card>
     </Col>

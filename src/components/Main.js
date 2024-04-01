@@ -13,9 +13,9 @@ import horror from "../booksData/horror.json";
 import romance from "../booksData/romance.json";
 import scifi from "../booksData/scifi.json";
 
-import SelectedContextProvider from "../contexts/SelectedContextProvider";
 import { ThemeContext } from "../contexts/ThemeContextProvider";
 import { QueryContext } from "../contexts/QueryContext";
+import SelectedContextProvider from "../contexts/SelectedContextProvider";
 
 const categories = {
   fantasy: fantasy,
@@ -64,9 +64,9 @@ const Main = () => {
         searchInput={searchInput}
         showSearch={showSearch}
       />
-      <Container className={`bg-${theme}`} fluid>
-        {loading && loadingMsg}
-        <SelectedContextProvider>
+      <SelectedContextProvider>
+        <Container className={`bg-${theme}`} fluid>
+          {loading && loadingMsg}
           <Row className="gy-3">
             <Col md={6}>
               <Row className="gy-3">
@@ -81,8 +81,8 @@ const Main = () => {
               </Row>
             </Col>
           </Row>
-        </SelectedContextProvider>
-      </Container>
+        </Container>
+      </SelectedContextProvider>
       <BasicFooter />
     </>
   );
