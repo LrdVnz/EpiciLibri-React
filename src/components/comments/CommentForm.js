@@ -29,7 +29,7 @@ const CommentForm = ({
         handleSubmit(e);
       }}
     >
-      <Row className="align-items-center">
+      <Row className="align-items-end">
         <Col md={isModify && 12}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label className={margin}> {title} </Form.Label>

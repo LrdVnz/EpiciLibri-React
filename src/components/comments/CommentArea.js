@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { Card, Button, Col } from "react-bootstrap";
 import AddComment from "./AddComment";
 import ModifyComment from "./ModifyComment";
@@ -16,9 +17,20 @@ const CommentArea = ({ isDetails }) => {
   const [showModify, setShowModify] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [currentComment, setCurrentComment] = useState();
-  const { selected } = useContext(SelectedContext);
+  const { selected , setSelected} = useContext(SelectedContext);
+  const { asin } = useParams();
+
+  let voteSum = 0; 
 
   useEffect(() => {
+  let initial = 0;
+  voteSum = comments.reduce((acc, value) => acc + value.rate, initial)
+
+  console.log(voteSum)
+  }, [comments])
+ 
+  useEffect(() => {
+    if(selected === "" && asin === ""){
     fetch("https://striveschool-api.herokuapp.com/api/comments", {
       headers: {
         "Content-Type": "application/json",
@@ -35,6 +47,9 @@ const CommentArea = ({ isDetails }) => {
         }
       })
       .catch((e) => console.log(e));
+    } else if (selected === "" && asin != "" ){
+      setSelected(asin)
+    }
   }, []);
 
   useEffect(() => {

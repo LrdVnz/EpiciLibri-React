@@ -23,7 +23,7 @@ const BookDetails = () => {
     <>
       <BasicNav showSearch={false} />
       <Container className={`bg-${theme}`} fluid style={{ height: "100%" }}>
-        <Row>
+        <Row className="details-padding">
           <Col md={6}>
             <Row>
               <Col className="offset-md-3" md={6}>
