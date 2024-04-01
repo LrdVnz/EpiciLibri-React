@@ -30,7 +30,7 @@ const CommentForm = ({
       }}
     >
       <Row className="align-items-center">
-        <Col>
+        <Col md={isModify && 12}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label className={margin}> {title} </Form.Label>
             <Form.Control
@@ -41,7 +41,7 @@ const CommentForm = ({
             />
           </Form.Group>
         </Col>
-        <Col>
+        <Col md={isModify && 12}>
           <Form.Group>
             <Form.Label
               className={isModify ? "white-theme" : themeClass + margin}
@@ -61,7 +61,7 @@ const CommentForm = ({
             </Form.Select>
           </Form.Group>
         </Col>
-        <Col>
+        <Col md={isModify && 12}>
           <Button type="submit" variant="primary" className={"m-2 "}>
             Submit
           </Button>

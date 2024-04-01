@@ -15,19 +15,8 @@ const CommentArea = ({ isDetails }) => {
   const [empty, setEmpty] = useState(true);
   const [showModify, setShowModify] = useState(false);
   const [uploaded, setUploaded] = useState(false);
+  const [currentComment, setCurrentComment] = useState();
   const { selected } = useContext(SelectedContext);
-
-  function reloadComments() {
-    uploaded ? setUploaded(false) : setUploaded(true);
-  }
-
-  function handleShowModify() {
-    if (showModify) {
-      setShowModify(false);
-    } else if (!showModify) {
-      setShowModify(true);
-    }
-  }
 
   useEffect(() => {
     fetch("https://striveschool-api.herokuapp.com/api/comments", {
@@ -68,6 +57,19 @@ const CommentArea = ({ isDetails }) => {
         .catch((e) => console.log(e));
     }
   }, [selected, uploaded]);
+
+  function reloadComments() {
+    uploaded ? setUploaded(false) : setUploaded(true);
+  }
+
+  function handleShowModify(index) {
+    if (showModify) {
+      setShowModify(false);
+    } else if (!showModify) {
+      setCurrentComment(index)
+      setShowModify(true);
+    }
+  }
 
   function handleDelete(e) {
     fetch("https://striveschool-api.herokuapp.com/api/comments/" + e, {
@@ -127,11 +129,11 @@ const CommentArea = ({ isDetails }) => {
                 <Button
                   variant="warning"
                   className="m-2"
-                  onClick={() => handleShowModify()}
+                  onClick={() => handleShowModify(index)}
                 >
                   Modify comment
                 </Button>
-                {showModify && (
+                {(showModify && currentComment === index) && (
                   <ModifyComment
                     existing_comment={comment.comment}
                     id={comment._id}
