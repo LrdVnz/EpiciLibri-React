@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 
-import { Button } from "react-bootstrap";
+import { Button, Form, Row, Col } from "react-bootstrap";
 import { ThemeContext } from "../../contexts/ThemeContextProvider";
 
 const CommentForm = ({
@@ -23,37 +23,51 @@ const CommentForm = ({
   }, [theme]);
 
   return (
-    <form
+    <Form
       className={"p-2 " + themeClass}
       onSubmit={(e) => {
         handleSubmit(e);
       }}
     >
-      <label className={margin}> {title} </label>
-      <input
-        className={margin}
-        type="text"
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-      />
-      <label className={isModify ? "white-theme" : themeClass + margin}>
-        Dai un voto:
-      </label>
-      <select
-        className={margin}
-        value={vote}
-        onChange={(e) => setVote(e.target.value)}
-      >
-        <option value={1}>1</option>
-        <option value={2}>2</option>
-        <option value={3}>3</option>
-        <option value={4}>4</option>
-        <option value={5}>5</option>
-      </select>
-      <Button type="submit" variant="primary" className={"m-2 "}>
-        Submit
-      </Button>
-    </form>
+      <Row className="align-items-center">
+        <Col>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label className={margin}> {title} </Form.Label>
+            <Form.Control
+              className={margin}
+              type="text"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+          </Form.Group>
+        </Col>
+        <Col>
+          <Form.Group>
+            <Form.Label
+              className={isModify ? "white-theme" : themeClass + margin}
+            >
+              Dai un voto:
+            </Form.Label>
+            <Form.Select
+              className={margin}
+              value={vote}
+              onChange={(e) => setVote(e.target.value)}
+            >
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+            </Form.Select>
+          </Form.Group>
+        </Col>
+        <Col>
+          <Button type="submit" variant="primary" className={"m-2 "}>
+            Submit
+          </Button>
+        </Col>
+      </Row>
+    </Form>
   );
 };
 
