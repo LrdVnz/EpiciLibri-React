@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/EpiciLibri-React/static/css/main.7637a320.css",
+    "main.js": "/EpiciLibri-React/static/js/main.756b6cf6.js",
+    "index.html": "/EpiciLibri-React/index.html",
+    "main.7637a320.css.map": "/EpiciLibri-React/static/css/main.7637a320.css.map",
+    "main.756b6cf6.js.map": "/EpiciLibri-React/static/js/main.756b6cf6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7637a320.css",
+    "static/js/main.756b6cf6.js"
+  ]
+}
