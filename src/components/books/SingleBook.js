@@ -37,8 +37,7 @@ const SingleBook = ({ book }) => {
             Asin: {book.asin}
           </Card.Text>
           <Button>
-            {" "}
-            <Link to={"/" + book.asin}> Dettagli</Link>{" "}
+            <Link to={"/" + book.asin} className="text-dark">Dettagli</Link>{" "}
           </Button>
         </Card.Body>
       </Card>
