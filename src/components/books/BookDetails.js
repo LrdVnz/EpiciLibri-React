@@ -22,7 +22,7 @@ const BookDetails = () => {
   return (
     <>
       <BasicNav showSearch={false} />
-      <Container className={`bg-${theme}`} fluid style={{ height: "100vh" }}>
+      <Container className={`bg-${theme}`} fluid style={{ height: "100%" }}>
         <Row>
           <Col md={6}>
             <Row>
@@ -36,12 +36,13 @@ const BookDetails = () => {
 
           <Col md={6} style={{ color: theme === "dark" ? "white" : "black" }}>
             <Row>
-              <Col className="offset-md-2" md={8}>
+              <Col className="offset-md-2 my-5" md={8}>
                 <h1>{book.title}</h1>
                 <h3> {book.category} </h3>
                 <h3> € {book.price} </h3>
                 Asin: {book.asin}
               </Col>
+              <h2 className="w-50 m-auto">People have commented : </h2>
             {   <CommentArea isDetails={true}></CommentArea> }
             </Row>
           </Col>

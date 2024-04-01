@@ -1,20 +1,20 @@
 import { useState, useEffect, useContext } from "react";
-import { Card, Button, Col} from "react-bootstrap";
+import { Card, Button, Col } from "react-bootstrap";
 import AddComment from "./AddComment";
 import ModifyComment from "./ModifyComment";
 import "./CommentForm.css";
 
 import { SelectedContext } from "../../contexts/SelectedContextProvider";
 
-const CommentArea = ({isDetails}) => {
+const CommentArea = ({ isDetails }) => {
   const endpoint = "https://striveschool-api.herokuapp.com/api/books/";
   const authToken =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzY2VkYzI0ZjYwNTAwMTkzN2Q1MTciLCJpYXQiOjE3MTE5NjU4MDQsImV4cCI6MTcxMzE3NTQwNH0.JoZHy-RFfdIXrG05LxXCXOAUzNflrEJSxnpZD7pAdj8"
-  
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzY2VkYzI0ZjYwNTAwMTkzN2Q1MTciLCJpYXQiOjE3MTE5NjU4MDQsImV4cCI6MTcxMzE3NTQwNH0.JoZHy-RFfdIXrG05LxXCXOAUzNflrEJSxnpZD7pAdj8";
+
   const [comments, setComments] = useState([]);
   const [empty, setEmpty] = useState(true);
   const [showModify, setShowModify] = useState(false);
-  const [ uploaded, setUploaded ] = useState(false)
+  const [uploaded, setUploaded] = useState(false);
   const { selected } = useContext(SelectedContext);
 
   function reloadComments() {
@@ -89,12 +89,27 @@ const CommentArea = ({isDetails}) => {
       {empty && <p> There are no comments. </p>}
       {comments &&
         comments.map((comment, index) => (
-          <Col sm={12} md={isDetails ? null : 6} lg={isDetails ? null : 4} key={index}>
-            <Card style={{ width: "18rem" }}>
+          <Col
+            sm={12}
+            md={isDetails ? null : 6}
+            lg={isDetails ? null : 4}
+            key={index}
+          >
+            <Card
+              style={{
+                width: isDetails ? "50% " : "18rem",
+                margin: isDetails ? "auto" : null,
+                marginBottom: isDetails ? "10px" : null,
+                marginTop: isDetails ? "10px" : null,
+              }}
+            >
               <Card.Body>
                 <Card.Text>
-                  <span> {comment.comment} </span>
-                  <span> {comment.author} </span>
+                  <p> {comment.comment} </p>
+                  <div>
+                    <span>Author : </span>
+                    <span><b>{comment.author}</b></span>
+                  </div>
                 </Card.Text>
                 <Button
                   variant="danger"

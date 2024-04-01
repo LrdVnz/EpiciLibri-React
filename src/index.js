@@ -12,11 +12,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <SelectedContextProvider>
-    <QueryContextProvider>
-    <ThemeContextProvider>
-      <App />
-    </ThemeContextProvider>
-    </QueryContextProvider>
+      <QueryContextProvider>
+        <ThemeContextProvider>
+          <App />
+        </ThemeContextProvider>
+      </QueryContextProvider>
     </SelectedContextProvider>
   </React.StrictMode>
 );

@@ -64,7 +64,7 @@ const Main = () => {
         searchInput={searchInput}
         showSearch={showSearch}
       />
-      <SelectedContextProvider>
+      
         <Container className={`bg-${theme}`} fluid>
           {loading && loadingMsg}
           <Row className="gy-3">
@@ -82,7 +82,6 @@ const Main = () => {
             </Col>
           </Row>
         </Container>
-      </SelectedContextProvider>
       <BasicFooter />
     </>
   );
